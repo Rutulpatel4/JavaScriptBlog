@@ -12,4 +12,5 @@ app.get(`/about`, (request,response) => {
 	response.send(`It a cold and dart rainy day.`)
 });
 
-app.listen(4000, () => console.log(`Listenig on port 4000`));
+const port = process.env.PORT || 4000;
+app.listen(port, () => console.log(`Listenig on port ${port}`));
