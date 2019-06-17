@@ -1,16 +1,14 @@
-const express = require(`express`);
-
+// Our imported libraries
+const express = require('express');
+// Assigning Express to an app contstant
 const app = express();
-
-// Creating our first route which is looking for requests from http://localhost:4000/
-app.get(`/`, (request, response) => { // res is the response object and req is the request object
- // Our response
- response.send(`Welcome to our very nice and plain site.`);
-});
-
-app.get(`/about`, (request,response) => {
-	response.send(`It a cold and dart rainy day.`)
-});
-
-const port = process.env.PORT || 4000;
-app.listen(port, () => console.log(`Listenig on port ${port}`));
+// This maintains our home path
+const path = require('path');
+// Our Views
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+// Our routes
+const routes = require('./routes.js');
+app.use('/', routes);
+// Starting our server on port 4000
+app.listen((process.env.PORT || 4000), () => console.log('Listening on 4000'));
